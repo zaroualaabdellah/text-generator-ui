@@ -16,47 +16,71 @@
 
     <div class="row g-3">
       <div class="col-md-6">
-        <input type="text" id="name" class="form-control" placeholder="Name">
+        <input type="text" id="keyword" class="form-control" placeholder="Enter your topic (e.g. Garlic Chicken Recipe)">
       </div>
 
       <div class="col-md-6">
-        <input type="text" id="order_id" class="form-control" placeholder="Order ID">
-      </div>
-
-      <div class="col-md-6">
-        <input type="date" id="date" class="form-control">
-      </div>
-
-      <div class="col-md-6">
-        <input type="text" id="city" class="form-control" placeholder="City">
+        <button onclick="generate()" class="btn btn-primary w-100">Generate Prompt</button>
       </div>
     </div>
 
-    <div class="text-center mt-4">
-      <button class="btn btn-primary px-4" onclick="generate()">Generate</button>
-    </div>
-
-    <hr class="my-4">
+    <hr>
 
     <h5>Result:</h5>
-    <textarea id="result" class="form-control" rows="6" readonly></textarea>
+    <textarea id="result" class="form-control" rows="12" readonly></textarea>
 
   </div>
 </div>
 
 <script>
 function generate() {
-  const name = document.getElementById("name").value;
-  const order_id = document.getElementById("order_id").value;
-  const date = document.getElementById("date").value;
-  const city = document.getElementById("city").value;
+  const keyword = document.getElementById("keyword").value;
 
-  const url = "YOUR_GOOGLE_SCRIPT_URL"
-    + "?name=" + encodeURIComponent(name)
-    + "&order_id=" + encodeURIComponent(order_id)
-    + "&date=" + encodeURIComponent(date)
-    + "&city=" + encodeURIComponent(city);
-    document.getElementById("result").value = data.result;
+  if (!keyword) {
+    alert("Please enter a topic");
+    return;
+  }
+
+  const prompt = `Act as an experienced SEO copywriter tasked with creating a comprehensive and engaging outline for an article about "${keyword}".
+
+The outline should structure the article in a way that is both reader-friendly and optimized for search engines.
+
+- Begin with an eye-catching H1 headline that includes the primary keyword "${keyword}".
+- Write an emotionally resonant introduction that connects with the reader.
+
+Structure the article as follows:
+
+H1: Title including "${keyword}"
+
+H2: Introduction
+- Emotional hook
+- Why "${keyword}" matters
+
+H2: Main Sections about "${keyword}"
+- Use H3 and H4 subheadings
+- Cover all aspects in logical flow
+
+Include:
+- Bullet points and numbered lists
+- Data or references where needed
+
+H2: Ingredients / Data Table (if applicable)
+- Use tables especially for recipes
+
+H2: Tips & Best Practices
+
+H2: FAQ Section
+- Include "${keyword}" in questions
+
+H2: Conclusion
+- Strong closing
+
+Make sure to:
+- Use H1, H2, H3, H4
+- Optimize for SEO
+- Keep it engaging and easy to read`;
+
+  document.getElementById("result").value = prompt;
 }
 </script>
 
