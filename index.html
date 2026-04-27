@@ -37,48 +37,48 @@ function generate() {
   const keyword = document.getElementById("keyword").value;
 
   if (!keyword) {
-    alert("Please enter a topic");
+    alert("Please enter a topic first");
     return;
   }
 
-  const prompt = `Act as an experienced SEO copywriter tasked with creating a comprehensive and engaging outline for an article about "${keyword}".
+ const prompt = `
+Act as an experienced SEO copywriter tasked with creating a comprehensive and engaging outline for an article about "${keyword}".
 
-The outline should structure the article in a way that is both reader-friendly and optimized for search engines.
+The outline should be structured in a way that is both reader-friendly and optimized for search engines.
 
-- Begin with an eye-catching H1 headline that includes the primary keyword "${keyword}".
-- Write an emotionally resonant introduction that connects with the reader.
+1. Headline (H1)
+- Begin with an eye-catching headline that incorporates the primary keyword: "${keyword}".
 
-Structure the article as follows:
+2. Introduction
+- Write an emotionally resonant opening that connects personally with the reader.
+- This could be a reflection, a personal experience, or an emotional appeal aligned with the article’s theme.
 
-H1: Title including "${keyword}"
+3. Body Structure
+- Break the outline into several sections.
+- Each section must include subheadings (H2, H3, H4) with relevant keywords.
+- Ensure logical flow from one section to another.
+- Cover all necessary aspects of "${keyword}" in detail.
 
-H2: Introduction
-- Emotional hook
-- Why "${keyword}" matters
+4. Content Guidelines
+- Use bullet points or numbered lists where appropriate for readability.
+- For each section, briefly mention:
+  - Key points to cover
+  - Any data or sources that should support those points
 
-H2: Main Sections about "${keyword}"
-- Use H3 and H4 subheadings
-- Cover all aspects in logical flow
+5. Tables
+- Include tables in the article, especially for recipe ingredients.
 
-Include:
-- Bullet points and numbered lists
-- Data or references where needed
+6. Formatting
+- Use proper heading structure: H1, H2, H3, H4
+- Use lists throughout the article to improve readability
 
-H2: Ingredients / Data Table (if applicable)
-- Use tables especially for recipes
+7. FAQ Section
+- Add a FAQ section at the end
+- Try to include the main keyword in the questions and/or answers
 
-H2: Tips & Best Practices
-
-H2: FAQ Section
-- Include "${keyword}" in questions
-
-H2: Conclusion
-- Strong closing
-
-Make sure to:
-- Use H1, H2, H3, H4
-- Optimize for SEO
-- Keep it engaging and easy to read`;
+8. Conclusion
+- End the article with a strong conclusion summarizing key insights
+`;
 
   document.getElementById("result").value = prompt;
 }
