@@ -1,47 +1,54 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>Text Generator</title>
 
-  <!-- Bootstrap CDN -->
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+<head>
+    <meta charset="UTF-8">
+    <title>Text Generator</title>
+
+    <!-- Bootstrap CDN -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
 
 <body class="bg-light">
 
-<div class="container mt-5">
-  <div class="card shadow p-4">
-    <h3 class="mb-4 text-center">Text Generator</h3>
+    <div class="container mt-5">
+        <div class="card shadow p-4">
+            <h3 class="mb-4 text-center">Text Generator</h3>
 
-    <div class="row g-3">
-      <div class="col-md-6">
-        <input type="text" id="keyword" class="form-control" placeholder="Enter your topic (e.g. Garlic Chicken Recipe)">
-      </div>
+            <div class="row g-3">
+                <div class="col-md-6">
+                    <input type="text" id="keyword" class="form-control"
+                        placeholder="Enter your topic (e.g. Garlic Chicken Recipe)">
+                </div>
+                <h4>SEO Prompt Text</h4>
 
-      <div class="col-md-6">
-        <button onclick="generate()" class="btn btn-primary w-100">Generate Prompt</button>
-      </div>
+                <textarea id="textZone" class="form-control" rows="10"></textarea>
+
+                <button class="btn btn-primary mt-3" onclick="copyText()">Copy Text</button>
+
+                <div class="col-md-6">
+                    <button onclick="generate()" class="btn btn-primary w-100">Generate Prompt</button>
+                </div>
+            </div>
+
+            <hr>
+
+            <h5>Result:</h5>
+            <textarea id="result" class="form-control" rows="12" readonly></textarea>
+
+        </div>
     </div>
 
-    <hr>
+    <script>
+        function generate() {
+            const keyword = document.getElementById("keyword").value;
 
-    <h5>Result:</h5>
-    <textarea id="result" class="form-control" rows="12" readonly></textarea>
+            if (!keyword) {
+                alert("Please enter a topic first");
+                return;
+            }
 
-  </div>
-</div>
-
-<script>
-function generate() {
-  const keyword = document.getElementById("keyword").value;
-
-  if (!keyword) {
-    alert("Please enter a topic first");
-    return;
-  }
-
- const prompt = `
+            const prompt = `
 Act as an experienced SEO copywriter tasked with creating a comprehensive and engaging outline for an article about "${keyword}".
 
 The outline should be structured in a way that is both reader-friendly and optimized for search engines.
@@ -80,9 +87,25 @@ The outline should be structured in a way that is both reader-friendly and optim
 - End the article with a strong conclusion summarizing key insights
 `;
 
-  document.getElementById("result").value = prompt;
-}
-</script>
+            document.getElementById("result").value = prompt;
+        }
+        // Store your text in a variable
+        const myText = `Act as an experienced SEO copywriter, tasked with writing a 2000 words long article based on the provided [outline]. Your primary goal is to craft a compelling, informative piece that not only adheres to SEO best practices but also ranks high on search engines for the chosen keywords. Use an informative Tone of voice and make sure to use a Point of view for the Second person (you, your, yours), Enhances readability of the article and bypasses AI detection by not using known words and sentences used by Ai detectors. The article should be well-researched, engaging to the target audience, and structured in a way that enhances readability (using headings, subheadings, bullet points, etc.). Incorporate relevant keywords naturally throughout the text, without compromising the flow or quality of the content. Ensure that the article answers the questions or solves the problems outlined, providing value to`;
+
+        // Display in textarea
+        document.getElementById("textZone").value = myText;
+
+        // Copy function
+        function copyText() {
+            const textarea = document.getElementById("textZone");
+            textarea.select();
+            textarea.setSelectionRange(0, 99999); // mobile support
+            document.execCommand("copy");
+
+            alert("Text copied!");
+        }
+    </script>
 
 </body>
+
 </html>
