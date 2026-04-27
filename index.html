@@ -56,13 +56,7 @@ function generate() {
     + "&order_id=" + encodeURIComponent(order_id)
     + "&date=" + encodeURIComponent(date)
     + "&city=" + encodeURIComponent(city);
-
-  fetch(url)
-    .then(res => res.json())
-    .then(data => {
-      document.getElementById("result").value = data.result;
-    })
-    .catch(err => alert("Error: " + err));
+    document.getElementById("result").value = data.result;
 }
 </script>
 
