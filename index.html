@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Text Generator</title>
+
+  <!-- Bootstrap CDN -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+
+<body class="bg-light">
+
+<div class="container mt-5">
+  <div class="card shadow p-4">
+    <h3 class="mb-4 text-center">Text Generator</h3>
+
+    <div class="row g-3">
+      <div class="col-md-6">
+        <input type="text" id="name" class="form-control" placeholder="Name">
+      </div>
+
+      <div class="col-md-6">
+        <input type="text" id="order_id" class="form-control" placeholder="Order ID">
+      </div>
+
+      <div class="col-md-6">
+        <input type="date" id="date" class="form-control">
+      </div>
+
+      <div class="col-md-6">
+        <input type="text" id="city" class="form-control" placeholder="City">
+      </div>
+    </div>
+
+    <div class="text-center mt-4">
+      <button class="btn btn-primary px-4" onclick="generate()">Generate</button>
+    </div>
+
+    <hr class="my-4">
+
+    <h5>Result:</h5>
+    <textarea id="result" class="form-control" rows="6" readonly></textarea>
+
+  </div>
+</div>
+
+<script>
+function generate() {
+  const name = document.getElementById("name").value;
+  const order_id = document.getElementById("order_id").value;
+  const date = document.getElementById("date").value;
+  const city = document.getElementById("city").value;
+
+  const url = "YOUR_GOOGLE_SCRIPT_URL"
+    + "?name=" + encodeURIComponent(name)
+    + "&order_id=" + encodeURIComponent(order_id)
+    + "&date=" + encodeURIComponent(date)
+    + "&city=" + encodeURIComponent(city);
+
+  fetch(url)
+    .then(res => res.json())
+    .then(data => {
+      document.getElementById("result").value = data.result;
+    })
+    .catch(err => alert("Error: " + err));
+}
+</script>
+
+</body>
+</html>
